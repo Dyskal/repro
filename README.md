@@ -7,3 +7,9 @@
 ```sh
 pip install -U numpy
 ```
+
+## Build the Docker Image:
+`docker build -t associative-property .`
+
+## Run the Docker Container:
+`docker run associative-property`
