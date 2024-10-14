@@ -42,7 +42,10 @@ jobs:
           name: answer_associativity
 
       - name: Commit and push changes
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
         run: |
+          git remote set-url origin https://x-access-token:${GH_PAT}@github.com/${{ github.repository }}
           git add answer_associativity.txt
           git commit -m "Add computed result"
           git push origin HEAD:main
