@@ -1,6 +1,6 @@
 # Associativité avec Python
 
-## Testé avec Python 3.10.x et 3.11.x
+## Testé avec Python 3.10.x, 3.11.x, 3.12.x et 3.13.x
 
 
 ## Dépendances

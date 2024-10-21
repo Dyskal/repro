@@ -1,29 +1,29 @@
-import numpy as np
+from argparse import ArgumentParser
 
-def main():
-  #badResult = 0
-  #cpt = 0
+from numpy import arange
 
-  #for i in range(0, 50):
-  #    for j in range(0, 50):
-  #        for k in range(0, 50):
-  #            cpt += 1
-  #            if (i * 0.1 + j * 0.1) + k * 0.1 != i * 0.1 + (j * 0.1 + k * 0.1):
-  #                badResult += 1
 
-  #print(f"Manual range: {(cpt-badResult)*100/cpt}%")
-
-  badResult = 0
+def main(start=0.0, end=5.0, step=0.1):
+  bad_result = 0
   cpt = 0
 
-  for i in np.arange(0.0, 5.0, 0.1):
-      for j in np.arange(0.0, 5.0, 0.1):
-          for k in np.arange(0.0, 5.0, 0.1):
-              cpt += 1
-              if (i + j) + k != i + (j + k):
-                  badResult += 1
+  for i in arange(start, end, step):
+    for j in arange(start, end, step):
+      for k in arange(start, end, step):
+        cpt += 1
+        if (i + j) + k != i + (j + k):
+          bad_result += 1
 
-  print(f"{(cpt-badResult)*100/cpt:.2f}")
+  print(f"{(cpt - bad_result) * 100 / cpt:.2f}")
+
 
 if __name__ == "__main__":
-  main()
+  # Parse arguments at runtime
+  parser = ArgumentParser(description="Check associativity of specified range.")
+  parser.add_argument('--start', type=float, default=0.0, help="Start of the range (e.g., '0.0').")
+  parser.add_argument('--end', type=float, default=5.0, help="End of the range (e.g., '5.0').")
+  parser.add_argument('--step', type=float, default=0.1, help="Step size (e.g., '0.1').")
+
+  args = parser.parse_args()
+
+  main(**vars(args))
