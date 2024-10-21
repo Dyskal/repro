@@ -62,4 +62,6 @@ jobs:
           python-version: '3.12'
 
       - name: Random runner
-        run: python runner.py
+        run: |
+          pip install -U numpy
+          python runner.py
