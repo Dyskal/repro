@@ -14,7 +14,7 @@ def main(start=0.0, end=5.0, step=0.1):
         if (i + j) + k != i + (j + k):
           bad_result += 1
 
-  print(f"{(cpt - bad_result) * 100 / cpt:.2f}")
+  return f"{(cpt - bad_result) * 100 / cpt:.2f}"
 
 
 if __name__ == "__main__":
@@ -26,4 +26,5 @@ if __name__ == "__main__":
 
   args = parser.parse_args()
 
-  main(**vars(args))
+  result = main(**vars(args))
+  print(result)

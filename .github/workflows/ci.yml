@@ -37,7 +37,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: answer_associativity
-      
+
       - name: Check for changes
         run: |
           git add answer_associativity.txt
@@ -48,3 +48,18 @@ jobs:
         run: |
           git commit -m "Add computed result"
           git push
+
+  analysis:
+    runs-on: ubuntu-latest
+        needs: build
+        steps:
+          - name: Checkout code
+            uses: actions/checkout@v4
+
+          - name: Set up Python ${{ matrix.python-version }}
+            uses: actions/setup-python@v5
+            with:
+              python-version: '3.12'
+
+          - name: Random runner
+            run: python runner.py
