@@ -1,2 +1,1 @@
-Manual range: 78.4816%
-Manual numpy arange: 78.4816%
+78.48
