@@ -1,2 +1,2 @@
-Manual range: Expected 26898; Current 26898; Result: True
-Manual numpy arange: Expected 26898; Current 26898; Result: True
+Manual range: 78.4816%
+Manual numpy arange: 78.4816%
