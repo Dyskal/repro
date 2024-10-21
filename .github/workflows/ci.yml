@@ -1,9 +1,6 @@
 name: CI Pipeline
 
-on:
-  push:
-    branches:
-      - main
+on: push
 
 jobs:
   build:
@@ -40,9 +37,14 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: answer_associativity
-
-      - name: Commit and push changes
+      
+      - name: Check for changes
         run: |
           git add answer_associativity.txt
+          git diff --cached --quiet || echo "changed=true" >> $GITHUB_ENV
+
+      - name: Commit and push changes
+        if: env.changed == 'true'
+        run: |
           git commit -m "Add computed result"
           git push
