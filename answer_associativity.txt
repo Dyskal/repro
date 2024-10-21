@@ -1,2 +1,1 @@
-Manual range: 77.7392%; Operations 125000
-Manual numpy arange: 80.0656%; Operations 125000
+Manual numpy arange: 80.07
