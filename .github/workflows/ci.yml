@@ -21,9 +21,32 @@ jobs:
           name: answer_associativity
           path: answer_associativity.txt
 
-  commit:
+  analysis:
     runs-on: ubuntu-latest
     needs: build
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Random runner
+        run: |
+          pip install -U numpy
+          python runner.py
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: data_csv
+          path: data.csv
+
+  commit:
+    runs-on: ubuntu-latest
+    needs: [build, analysis]
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -35,12 +58,10 @@ jobs:
 
       - name: Download artifact
         uses: actions/download-artifact@v4
-        with:
-          name: answer_associativity
 
       - name: Check for changes
         run: |
-          git add answer_associativity.txt
+          git add answer_associativity.txt data.csv
           git diff --cached --quiet || echo "changed=true" >> $GITHUB_ENV
 
       - name: Commit and push changes
@@ -48,20 +69,3 @@ jobs:
         run: |
           git commit -m "Add computed result"
           git push
-
-  analysis:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
-      - name: Random runner
-        run: |
-          pip install -U numpy
-          python runner.py

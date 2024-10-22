@@ -10,7 +10,7 @@ def generate_random_series(n: int):
   for _ in range(n):
     start = uniform(0.0, 10.0)  # Générer un start aléatoire entre 0.0 et 10.0
     end = uniform(start + 0.1, 15.0)  # Générer un end aléatoire entre start + 0.1 et 15.0
-    step = uniform(0.01, 1.0)  # Générer un step raisonnable entre 0.01 et 1.0
+    step = uniform(0.01, min((end - start) - 0.01, 1.0))  # Générer un step raisonnable entre 0.01 et 1.0
     series.append((start, end, step))
   return series
 
@@ -35,8 +35,8 @@ def main():
 
     # Écrit les données dans le fichier
     for i, (start, end, step) in enumerate(random_series):
+      print(f"Series {i + 1}: Start = {start:.2f}, End = {end:.2f}, Step = {step:.2f}")
       result = associativite(start, end, step)
-      print(f"Series {i + 1}: Start = {start:.2f}, End = {end:.2f}, Step = {step:.2f}, Result = {result}")
       csv.writerow([f"{start:.2f}", f"{end:.2f}", f"{step:.2f}", result])
 
 
