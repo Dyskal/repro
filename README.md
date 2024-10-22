@@ -1,8 +1,8 @@
-# Associativité avec Python
+# Associativity with Python
 
-## Testé avec Python 3.10.x, 3.11.x, 3.12.x et 3.13.x
+## Tested with Python 3.10.x, 3.11.x, 3.12.x et 3.13.x
 
-## Dépendances
+## Dependencies
 ```sh
 pip install -U numpy
 ```
@@ -17,3 +17,4 @@ pip install -U numpy
 - `associativite.py` - Main program
 - `runner.py` - Runner to generate random numbers for the CI
 - `script.py` - Git repo checker for alignment
+- `Decision_Tree_Regression_Lab_Report.ipynb` - Notebook to run the analysis
