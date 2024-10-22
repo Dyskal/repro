@@ -16,7 +16,7 @@ def generate_random_series(n: int):
 
 
 def main():
-  n = 5  # Nombre de séries à générer
+  n = 500  # Nombre de séries à générer
   random_series = generate_random_series(n)
 
   # Nom du fichier CSV
